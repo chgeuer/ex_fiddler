@@ -5,10 +5,11 @@ defmodule Fiddler do
   Fiddler module provides functions to attach the proxy server address and port to a `:req` request.
   """
 
-  @schema NimbleOptions.new!(
-            ip: [type: :string, required: false],
-            port: [type: :integer, required: false]
-          )
+  # TODO enable NimbleOptions.new!(...)
+  @schema [
+    ip: [type: :string, required: false],
+    port: [type: :integer, required: false]
+  ]
 
   @doc """
   Attaches the proxy server address and port to the request.
