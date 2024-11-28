@@ -1,0 +1,40 @@
+# Fiddler demo
+
+```elixir
+Mix.install([
+  {:ex_fiddler, github: "chgeuer/ex_fiddler", force: true},
+  {:nimble_options, "~> 1.1"},
+  {:req, "~> 0.5.7"}
+], force: true)
+```
+
+## Integration with Req
+
+This demo assumes you have [Fiddler](https://www.telerik.com/download/fiddler) running on your Windows computer.
+
+You can run this both on the Windows **and** on the WSL/Linux side, it *should* just work.
+
+```elixir
+url = "https://jsonplaceholder.typicode.com/posts/1"
+```
+
+```elixir
+%Req.Response{body: body} =
+  Req.new()
+  |> Fiddler.attach()
+  |> Req.merge(method: :get, url: url)
+  |> Req.request!()
+
+body
+```
+
+## Integration with :httpc
+
+```elixir
+Fiddler.inject_fiddler_httpc()
+
+{:ok, {{_,200,_}, _headers, body}} = :httpc.request(:get, {String.to_charlist(url), []}, [], [{:body_format, :binary} ])
+
+body
+|> Jason.decode!()
+```
