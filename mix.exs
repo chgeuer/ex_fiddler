@@ -22,7 +22,7 @@ defmodule Fiddler.MixProject do
   defp deps do
     [
       {:req, "~> 0.5.7"},
-      {:nimble_options, "~> 1.1", runtime: false}
+      {:nimble_options, "~> 1.1"}
     ]
   end
 end
