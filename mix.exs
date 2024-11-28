@@ -14,7 +14,6 @@ defmodule Fiddler.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:nimble_options],
       extra_applications: [:logger, :inets, :ssl]
     ]
   end
@@ -23,7 +22,7 @@ defmodule Fiddler.MixProject do
   defp deps do
     [
       {:req, "~> 0.5.7"},
-      {:nimble_options, "~> 1.1", only: :dev}
+      {:nimble_options, "~> 1.1"}
     ]
   end
 end
